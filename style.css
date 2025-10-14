@@ -1,0 +1,740 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* 배경 이미지가 로드되면 그라데이션은 보조 효과로 사용 */
+    background: linear-gradient(135deg, rgba(245, 247, 250, 0.8) 0%, rgba(195, 207, 226, 0.8) 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+    /* 배경 이미지 관련 속성 */
+    background-size: 100% 100%; /* 배경 이미지 크기를 고정 */
+    background-position: center center; /* 배경 이미지 위치를 고정 */
+    background-repeat: no-repeat;
+    /* 배경에 약한 노이즈 텍스처 추가 */
+    background-image: 
+        radial-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+        var(--background-image, linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%));
+    flex-direction: column;
+    padding-top: 60px; /* navbar 높이만큼 패딩 추가 */
+}
+
+/* 어두운 테마 */
+body.dark-theme {
+    background: linear-gradient(135deg, rgba(30, 30, 40, 0.9) 0%, rgba(15, 15, 25, 0.9) 100%);
+    color: #e2e8f0;
+    background-image: 
+        radial-gradient(rgba(100, 100, 120, 0.1) 1px, transparent 1px),
+        var(--background-image, linear-gradient(135deg, #1e1e28 0%, #0f0f19 100%));
+    background-size: 100% 100%; /* 배경 이미지 크기를 고정 */
+    background-position: center center; /* 배경 이미지 위치를 고정 */
+}
+
+/* navbar 스타일 */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(100, 100, 100, 0.9); /* 배경을 지금보다 조금 밝게 변경 */
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+/* 어두운 테마 navbar */
+body.dark-theme .navbar {
+    background: rgba(30, 30, 40, 0.9);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 60px;
+}
+
+.nav-logo {
+    color: #f0f0f0; /* 로고 색상을 약간 밝게 조정 */
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+}
+
+.nav-item {
+    margin-left: 2rem;
+}
+
+.nav-link {
+    color: #f0f0f0; /* 링크 색상을 약간 밝게 조정 */
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #667eea;
+}
+
+/* 어두운 테마 링크 */
+body.dark-theme .nav-link {
+    color: #cbd5e0;
+}
+
+body.dark-theme .nav-link:hover {
+    color: #8fa4f5;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.85); /* 투명도 조절 */
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15); /* 부드러운 그림자 */
+    text-align: center;
+    max-width: 90%;
+    width: auto;
+    min-width: 300px;
+    /* 세련된 보더 추가 */
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    /* 내부 그림자 효과 */
+    box-shadow: 
+        0 8px 32px rgba(31, 38, 135, 0.15),
+        inset 0 4px 8px rgba(255, 255, 255, 0.2);
+}
+
+/* 어두운 테마 컨테이너 */
+body.dark-theme .container {
+    background: rgba(30, 30, 40, 0.85);
+    border: 1px solid rgba(100, 100, 120, 0.2);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.date-header {
+    font-size: 1.8rem;
+    color: #4a5568;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* 어두운 테마 날짜 헤더 */
+body.dark-theme .date-header {
+    color: #e2e8f0;
+    background: rgba(30, 30, 40, 0.8);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(100, 100, 120, 0.2);
+}
+
+/* IP 주소 관련 스타일 삭제됨 */
+
+/* 정보 화면 스타일 */
+.info-content {
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.info-content h2 {
+    color: #4a5568;
+    margin: 1.5rem 0 0.5rem 0;
+    font-size: 1.3rem;
+}
+
+/* 어두운 테마 정보 제목 */
+body.dark-theme .info-content h2 {
+    color: #e2e8f0;
+}
+
+.info-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #4a5568;
+    margin-bottom: 1rem;
+}
+
+/* 어두운 테마 정보 텍스트 */
+body.dark-theme .info-content p {
+    color: #cbd5e0;
+}
+
+.info-content ul, .info-content ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.info-content li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+/* 어두운 테마 리스트 */
+body.dark-theme .info-content li {
+    color: #cbd5e0;
+}
+
+/* 7세그먼트 시계 스타일 */
+.seven-segment-clock {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.time-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 1rem;
+}
+
+.digit {
+    position: relative;
+    width: 144px; /* 80 * 1.8 */
+    height: 252px; /* 140 * 1.8 */
+    background: linear-gradient(145deg, #1a1a1a 0%, #000000 100%);
+    border-radius: 18px; /* 10 * 1.8 */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 18px; /* 10 * 1.8 */
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 2px 4px rgba(255, 255, 255, 0.1),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+    border: 2px solid #333;
+}
+
+.digit::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.1) 100%);
+    border-radius: 16px;
+    pointer-events: none;
+}
+
+/* 세그먼트 정의 */
+.segment {
+    position: absolute;
+    background: linear-gradient(145deg, #ff4757 0%, #ff3838 100%);
+    border-radius: 3px;
+    box-shadow:
+        0 0 12px rgba(255, 71, 87, 0.8),
+        0 0 24px rgba(255, 71, 87, 0.4),
+        inset 0 1px 2px rgba(255, 255, 255, 0.3);
+    transition: all 0.15s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 가로 세그먼트 (a, d, g) */
+.segment.a, .segment.d, .segment.g {
+    clip-path: polygon(0 50%, 15% 0, 85% 0, 100% 50%, 85% 100%, 15% 100%);
+}
+
+/* 세로 세그먼트 (b, c, e, f) */
+.segment.b, .segment.c, .segment.e, .segment.f {
+    clip-path: polygon(50% 0, 100% 15%, 100% 85%, 50% 100%, 0 85%, 0 15%);
+}
+
+.segment.a { top: 18px; left: 18px; right: 18px; height: 22px; } /* 균등한 간격 */
+.segment.b { top: 36px; right: 12px; width: 22px; bottom: 48%; } /* 위쪽 세로 세그먼트 위로 */
+.segment.c { top: 48%; right: 12px; width: 22px; bottom: 36px; } /* 아래쪽 세로 세그먼트 아래로 */
+.segment.d { bottom: 18px; left: 18px; right: 18px; height: 22px; } /* 균등한 간격 */
+.segment.e { top: 48%; left: 12px; width: 22px; bottom: 36px; } /* 아래쪽 세로 세그먼트 아래로 */
+.segment.f { top: 36px; left: 12px; width: 22px; bottom: 48%; } /* 위쪽 세로 세그먼트 위로 */
+.segment.g { top: 50%; left: 18px; right: 18px; height: 22px; margin-top: -11px; } /* 균등한 간격 */
+
+.colon {
+    font-size: 144px; /* 80 * 1.8 */
+    color: #ff4757;
+    font-weight: bold;
+    text-shadow:
+        0 0 18px rgba(255, 71, 87, 0.8),
+        0 0 36px rgba(255, 71, 87, 0.4);
+    line-height: 1;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* 라이트 테마 시계 */
+.digit {
+    background: linear-gradient(145deg, #f8f9fa 0%, #e9ecef 100%);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 2px 4px rgba(255, 255, 255, 0.8),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+    border: 2px solid #dee2e6;
+}
+
+.segment {
+    background: linear-gradient(145deg, #343a40 0%, #212529 100%);
+    box-shadow:
+        0 0 12px rgba(52, 58, 64, 0.6),
+        0 0 24px rgba(52, 58, 64, 0.3),
+        inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+.colon {
+    color: #343a40;
+    text-shadow:
+        0 0 18px rgba(52, 58, 64, 0.6),
+        0 0 36px rgba(52, 58, 64, 0.3);
+}
+
+/* 어두운 테마 시계 */
+body.dark-theme .digit {
+    background: linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 100%);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.5),
+        inset 0 2px 4px rgba(255, 255, 255, 0.05),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.5);
+    border-color: #555;
+}
+
+body.dark-theme .segment {
+    background: linear-gradient(145deg, #00ff88 0%, #00cc66 100%);
+    box-shadow:
+        0 0 12px rgba(0, 255, 136, 0.8),
+        0 0 24px rgba(0, 255, 136, 0.4),
+        inset 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+body.dark-theme .colon {
+    color: #00ff88;
+    text-shadow:
+        0 0 18px rgba(0, 255, 136, 0.8),
+        0 0 36px rgba(0, 255, 136, 0.4);
+}
+
+/* 홍보 배너 스타일 */
+.promo-banner {
+    position: fixed;
+    width: 160px;
+    z-index: 998;
+    top: 700px; /* 카카오 광고 밑에 위치 */
+    transition: all 0.3s ease;
+}
+
+.left-banner {
+    left: 10px;
+}
+
+.right-banner {
+    right: 16px;
+}
+
+.banner-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.banner-image:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* 어두운 테마에서 배너 스타일 */
+body.dark-theme .banner-image {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-theme .banner-image:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 700px) {
+    .container {
+        padding: 1.5rem;
+        min-width: 250px;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    /* 모바일에서 시계 관련 스타일 삭제됨 */
+    
+    .nav-container {
+        padding: 0 1rem;
+    }
+    
+    .nav-item {
+        margin-left: 1rem;
+    }
+    
+    .nav-logo {
+        font-size: 1.2rem;
+    }
+    
+    .info-content h2 {
+        font-size: 1.1rem;
+    }
+    
+    .info-content p, .info-content li {
+        font-size: 0.9rem;
+    }
+    
+    /* 모바일에서 7세그먼트 시계 크기 조정 */
+    .digit {
+        width: 108px; /* 60 * 1.8 */
+        height: 180px; /* 100 * 1.8 */
+    }
+
+    .colon {
+        font-size: 108px; /* 60 * 1.8 */
+    }
+
+    /* 모바일에서 홍보 배너 숨기기 */
+    .promo-banner {
+        display: none;
+    }
+}
+
+/* 알람 섹션 스타일 */
+.alarm-section {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.alarm-set-button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    margin-bottom: 1rem;
+}
+
+.alarm-set-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+body.dark-theme .alarm-set-button {
+    background: linear-gradient(135deg, #5a67d8 0%, #6b4fc9 100%);
+    box-shadow: 0 4px 15px rgba(90, 103, 216, 0.4);
+}
+
+body.dark-theme .alarm-set-button:hover {
+    box-shadow: 0 6px 20px rgba(90, 103, 216, 0.6);
+}
+
+/* 알람 모달 스타일 */
+.alarm-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.alarm-modal-content {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.3);
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+}
+
+body.dark-theme .alarm-modal-content {
+    background: rgba(30, 30, 40, 0.95);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.alarm-modal-content h3 {
+    margin-bottom: 1rem;
+    color: #4a5568;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.current-time-display {
+    margin-bottom: 1.5rem;
+    padding: 10px 15px;
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #4a5568;
+}
+
+body.dark-theme .current-time-display {
+    background: rgba(102, 126, 234, 0.2);
+    color: #e2e8f0;
+}
+
+body.dark-theme .alarm-modal-content h3 {
+    color: #e2e8f0;
+}
+
+.alarm-input-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.alarm-input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #4a5568;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+body.dark-theme .alarm-input-group label {
+    color: #e2e8f0;
+}
+
+.alarm-input-group input[type="date"],
+.alarm-input-group input[type="time"] {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    background: rgba(255, 255, 255, 0.8);
+    transition: border-color 0.3s ease;
+}
+
+.alarm-input-group input[type="date"]:focus,
+.alarm-input-group input[type="time"]:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+body.dark-theme .alarm-input-group input[type="date"],
+body.dark-theme .alarm-input-group input[type="time"] {
+    background: rgba(30, 30, 40, 0.8);
+    border-color: #555;
+    color: #e2e8f0;
+}
+
+body.dark-theme .alarm-input-group input[type="date"]:focus,
+body.dark-theme .alarm-input-group input[type="time"]:focus {
+    border-color: #8fa4f5;
+}
+
+.alarm-modal-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.alarm-modal-buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#alarm-save-btn {
+    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(72, 187, 120, 0.4);
+}
+
+#alarm-save-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(72, 187, 120, 0.6);
+}
+
+#alarm-cancel-btn {
+    background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(245, 101, 101, 0.4);
+}
+
+#alarm-cancel-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(245, 101, 101, 0.6);
+}
+
+/* 알람 리스트 스타일 */
+.alarm-list {
+    margin-top: 1rem;
+}
+
+.alarm-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 15px 20px;
+    margin: 10px 0;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+body.dark-theme .alarm-item {
+    background: rgba(30, 30, 40, 0.8);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(100, 100, 120, 0.2);
+}
+
+.alarm-item-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.alarm-item-date {
+    font-size: 1rem;
+    color: #718096;
+    font-weight: 500;
+}
+
+body.dark-theme .alarm-item-date {
+    color: #a0aec0;
+}
+
+.alarm-item-time {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #4a5568;
+}
+
+body.dark-theme .alarm-item-time {
+    color: #e2e8f0;
+}
+
+.alarm-item-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.alarm-item button {
+    border: none;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.alarm-item button:first-child {
+    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+    color: white;
+}
+
+.alarm-item button:first-child:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(72, 187, 120, 0.4);
+}
+
+.alarm-item button:last-child {
+    background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
+    color: white;
+}
+
+.alarm-item button:last-child:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(245, 101, 101, 0.4);
+}
+
+/* 알람 알림 스타일 */
+.alarm-notification {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 107, 107, 0.7);
+    backdrop-filter: blur(5px);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+    animation: alarmFlash 0.3s ease-in-out infinite alternate;
+}
+
+@keyframes alarmFlash {
+    0% { background: rgba(255, 107, 107, 0.7); }
+    100% { background: rgba(255, 71, 87, 0.8); }
+}
+
+.alarm-notification .notification-content {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 3rem;
+    border-radius: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: 500px;
+    width: 90%;
+}
+
+.alarm-notification h2 {
+    margin-bottom: 1rem;
+    font-size: 3rem;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.alarm-notification p {
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.alarm-notification button {
+    background: rgba(255, 255, 255, 0.9);
+    color: #ff6b6b;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    padding: 15px 40px;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.alarm-notification button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
+    background: white;
+}

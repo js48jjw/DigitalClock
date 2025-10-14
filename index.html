@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>   
+    <!-- 좌측 고정 광고 -->
+    <div style="position: fixed; left: 10px; top: 80px; width: 160px; height: 600px; z-index: 999; display: flex; align-items: flex-start; pointer-events: auto;">
+        <ins class="kakao_ad_area" style="display: block;" 
+             data-ad-unit="DAN-"
+             data-ad-width="160"
+             data-ad-height="600"></ins>
+    </div>
+    
+    <!-- 우측 고정 광고 -->
+    <div style="position: fixed; right: 16px; top: 80px; width: 160px; height: 600px; z-index: 999; display: flex; align-items: flex-start; pointer-events: auto;">
+        <ins class="kakao_ad_area" style="display: block;" 
+             data-ad-unit="DAN-""
+             data-ad-width="160"
+             data-ad-height="600"></ins>
+    </div>
+    
+    <!-- 좌측 홍보 배너 (임시 주석 처리) -->
+    <!-- <div class="promo-banner left-banner">
+        <a href="https://ydztsbiml3.sens.kr" target="_blank" rel="noopener noreferrer">
+            <img src="Public/chimhyang.png" alt="침향 홍보" class="banner-image">
+        </a>
+    </div> -->
+
+    <!-- 우측 홍보 배너 (임시 주석 처리) -->
+    <!-- <div class="promo-banner right-banner">
+        <a href="https://redslwsq.adpt.kr" target="_blank" rel="noopener noreferrer">
+            <img src="Public/Esabang.png" alt="이사방 홍보" class="banner-image">
+        </a>
+    </div> -->
+
+
+
+    <!-- navbar 추가 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <h2 class="nav-logo">Digital Clock</h2>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link" id="home-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" id="info-link">Info</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" id="theme-toggle">Light Theme</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- 홈 화면 -->
+    <div class="container" id="home-container">
+        <!-- 날짜 표시 -->
+        <div class="date-header" id="current-date"></div>
+
+        <!-- 7세그먼트 시계 -->
+        <div class="seven-segment-clock">
+            <div class="time-display">
+                <div class="digit" id="hour-tens"></div>
+                <div class="digit" id="hour-ones"></div>
+                <div class="colon">:</div>
+                <div class="digit" id="minute-tens"></div>
+                <div class="digit" id="minute-ones"></div>
+                <div class="colon">:</div>
+                <div class="digit" id="second-tens"></div>
+                <div class="digit" id="second-ones"></div>
+            </div>
+        </div>
+
+        <!-- 알람 설정 -->
+        <div class="alarm-section">
+            <button id="alarm-set-btn" class="alarm-set-button">Set Alarm</button>
+            <div id="alarm-modal" class="alarm-modal" style="display: none;">
+                <div class="alarm-modal-content">
+                <h3>Set Alarm Date & Time</h3>
+                <div class="current-time-display" id="current-time-display">
+                    Current Time: <span id="modal-current-time">--:--:--</span>
+                </div>
+                <div class="alarm-input-group">
+                    <label for="alarm-date-input">Date:</label>
+                    <input type="date" id="alarm-date-input" required>
+                </div>
+                <div class="alarm-input-group">
+                    <label for="alarm-time-input">Time (HH:MM:SS):</label>
+                    <input type="time" id="alarm-time-input" step="1" required>
+                </div>
+                <div class="alarm-modal-buttons">
+                    <button id="alarm-save-btn">Save Alarm</button>
+                    <button id="alarm-cancel-btn">Cancel</button>
+                </div>
+                </div>
+            </div>
+            <div id="alarm-list" class="alarm-list"></div>
+        </div>
+    </div>
+    
+    <!-- 정보 화면 -->
+    <div class="container" id="info-container" style="display: none;">
+        <h1>Digital Clock Information</h1>
+        <div class="info-content">
+            <p>This website provides a beautiful 7-segment digital clock.</p>
+
+            <h2>Features</h2>
+            <ul>
+                <li><strong>7-Segment Display</strong>: Classic LED clock style showing current time.</li>
+                <li><strong>Real-time Updates</strong>: Time automatically updates every second.</li>
+                <li><strong>Date Display</strong>: Shows current date and day of the week.</li>
+                <li><strong>Dark/Light Theme</strong>: Switch between themes using the theme toggle button.</li>
+            </ul>
+
+            <h2>Technical Information</h2>
+            <ul>
+                <li>7-segment display is implemented with CSS and JavaScript.</li>
+                <li>Each digit consists of 7 segments (a-g).</li>
+                <li>Dark theme uses green LED effects, light theme uses red LED effects.</li>
+                <li>Background images are provided by Picsum Photos and change daily at 6 AM.</li>
+            </ul>
+
+            <h2>How to Use</h2>
+            <ol>
+                <li>Check the current time on the main screen with the 7-segment clock.</li>
+                <li>Click the theme toggle button to switch between dark and light modes.</li>
+                <li>Visit the "Info" tab to learn about clock features and usage.</li>
+            </ol>
+        </div>
+        <button id="back-to-home">Back to Home</button>
+    </div>
+    
+    <script src="script.js"></script>
+    <script src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+</body>
+</html>
