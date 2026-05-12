@@ -4,7 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Clock</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- Ensure CSS/JS are revalidated (helps when cache gets corrupted). -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <!-- Cache-busting version: bump on deploy when needed. -->
+    <link rel="stylesheet" href="style.css?v=2026-05-12">
 </head>
 <body>   
     <!-- 좌측 고정 광고 -->
@@ -119,7 +125,7 @@
         <button id="back-to-home">Back to Home</button>
     </div>
     
-    <script src="script.js"></script>
+    <script src="script.js?v=2026-05-12"></script>
     <script src="//t1.kakaocdn.net/kas/static/ba.min.js" async></script>
 </body>
 </html>
